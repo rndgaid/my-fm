@@ -1,0 +1,14 @@
+{
+  "autoload": {
+    "psr-4": {
+      "My\\Fm\\Vendor\\Core\\": "vendor/core"
+    }
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1.9",
+    "squizlabs/php_codesniffer": "3.*"
+  },
+  "require": {
+    "symfony/string": "^6.2"
+  }
+}
