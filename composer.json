@@ -1,7 +1,8 @@
 {
   "autoload": {
     "psr-4": {
-      "My\\Fm\\Vendor\\Core\\": "vendor/core"
+      "My\\Fm\\Vendor\\Core\\": "vendor/core",
+      "My\\Fm\\App\\Controllers\\": "app/controllers"
     }
   },
   "require-dev": {

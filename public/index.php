@@ -4,22 +4,20 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use My\Fm\App\Controllers\Main;
+use My\Fm\App\Controllers\Posts;
 use My\Fm\Vendor\Core\Router;
 
-$query = rtrim($_SERVER['QUERY_STRING'], '/');
-$request = rtrim($_SERVER['REQUEST_URI'], '/');
+$request = rtrim(str_replace('/my-fm/', '', $_SERVER['REQUEST_URI']), '/');
 
-print '<b>QUERY_STRING:</b> ' . $query . '<br>';
-print '<b>REQUEST_URI:</b> ' . $request . '<br>';
+Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
+Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 
-Router::add('posts/add', ['controller' => 'posts', 'action' => 'add']);
-Router::add('posts/', ['controller' => 'posts', 'action' => 'index']);
-Router::add('', ['controller' => 'Main', 'action' => 'index']);
+echo '<pre>' . print_r(Router::getRoutes(), true) . '</pre>';
 
-print '<pre>' . print_r(Router::getRoutes(), true) . '</pre>';
+Router::dispatch($request);
 
-if (Router::matchRoute($query)) {
-    var_dump(Router::getRoute());
-} else {
-    echo '404';
+if (class_exists("My\\Fm\\App\\Controllers\\Posts")) {
+    //print 'Ok';
 }
+
